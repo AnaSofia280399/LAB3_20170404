@@ -2,9 +2,13 @@ package com.example.lab3_20170404.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "doctor")
+@Getter
+@Setter
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,38 +21,9 @@ public class Doctor {
     @Column(name = "especialidad",nullable = false, length = 50)
     private  String especialidad;
 
-    @Column(name = "hospital_id", nullable = false)
-    private Integer hospital_id;
 
-    public int getId() {
-        return id;
-    }
+    @OneToOne
+    @JoinColumn(name = "hospital_id")
+    private Doctor hospital;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
-    }
-
-    public Integer getHospital_id() {
-        return hospital_id;
-    }
-
-    public void setHospital_id(Integer hospital_id) {
-        this.hospital_id = hospital_id;
-    }
-}
+   }
